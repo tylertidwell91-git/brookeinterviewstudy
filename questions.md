@@ -76,15 +76,6 @@
 
 ---
 
-## Technical / Role-Specific (may apply to other Guard roles)
-
-- Explain how you would troubleshoot and repair issues related to wheeled vehicles, including engine systems and powertrains.
-- Have you ever planned or managed large-scale food service operations, and if so, what strategies did you use to ensure efficiency and quality?
-- What methods do you use to gather and analyze intelligence data from various sources, and how have you applied this information to support decision-making?
-- Describe your experience working with IT infrastructure, including hardware, software, and network components, and how you ensured system reliability and security.
-
----
-
 ## General / Fit
 
 - What are your strengths and weaknesses?
