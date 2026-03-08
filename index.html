@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Army National Guard Recruiter — Interview Questions</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0b1020;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.18);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --text-strong: #f9fafb;
+      --danger: #f97373;
+      --success: #34d399;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 900px;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 26px 80px rgba(15, 23, 42, 0.85), 0 0 0 1px rgba(15, 23, 42, 0.9), 0 0 35px rgba(37, 99, 235, 0.25);
+      padding: 20px 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      backdrop-filter: blur(18px);
+    }
+
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .title-block { display: flex; flex-direction: column; gap: 2px; }
+
+    .title {
+      font-size: 20px;
+      font-weight: 640;
+      letter-spacing: 0.03em;
+      color: var(--text-strong);
+    }
+
+    .subtitle { font-size: 13px; color: var(--text-muted); }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.25), transparent 55%);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #6ee7b7, #10b981);
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.85);
+    }
+
+    .card {
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.16), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.12), transparent 55%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(148, 163, 184, 0.3), rgba(59, 130, 246, 0.16), rgba(148, 163, 184, 0.25));
+      mix-blend-mode: soft-light;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      position: relative;
+      z-index: 1;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #93c5fd;
+    }
+
+    .card-meta { font-size: 13px; color: var(--text-muted); }
+
+    .question-text {
+      position: relative;
+      z-index: 1;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text-main);
+      white-space: pre-wrap;
+    }
+
+    .question-highlight { font-weight: 600; color: var(--text-strong); }
+
+    .options-list {
+      position: relative;
+      z-index: 1;
+      margin-top: 4px;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 15px;
+      color: var(--text-main);
+    }
+
+    .options-list li.memory-recall-hint {
+      list-style: none;
+      color: var(--text-muted);
+      font-style: italic;
+      padding: 8px 0;
+    }
+
+    .answer-card {
+      border-radius: 14px;
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      background:
+        radial-gradient(circle at top, rgba(34, 197, 94, 0.18), transparent 55%),
+        linear-gradient(145deg, rgba(6, 78, 59, 0.9), rgba(6, 95, 70, 0.9));
+      padding: 12px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .answer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #bbf7d0;
+    }
+
+    .answer-label { text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; }
+
+    .answer-pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(74, 222, 128, 0.65);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .answer-main { font-size: 16px; font-weight: 600; color: #f0fdf4; }
+
+    .answer-explanation { font-size: 14px; line-height: 1.5; color: #dcfce7; }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .btn-row { display: flex; gap: 8px; }
+
+    button {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      background: #111827;
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.16s ease, border-color 0.16s ease, transform 0.08s ease, box-shadow 0.12s ease;
+    }
+
+    button.primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border-color: #3b82f6;
+      color: #f9fafb;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45), 0 0 0 1px rgba(37, 99, 235, 0.65);
+    }
+
+    button.secondary {
+      border-color: rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.25), transparent 55%);
+    }
+
+    button:hover.primary {
+      background: linear-gradient(135deg, #1d4ed8, #1d4ed8);
+      transform: translateY(-1px);
+    }
+
+    button:hover.secondary {
+      border-color: rgba(148, 163, 184, 0.9);
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.32), transparent 60%);
+    }
+
+    button.flagged {
+      border-color: var(--danger);
+      background: rgba(249, 115, 115, 0.15);
+      color: #fca5a5;
+    }
+
+    .status { font-size: 13px; color: var(--text-muted); }
+
+    .controls-right { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--text-muted); }
+
+    .deck-label { display: inline-flex; align-items: center; gap: 6px; }
+
+    .deck-select {
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      padding: 4px 10px;
+      font-size: 12px;
+      outline: none;
+      min-width: 180px;
+    }
+    .deck-select[multiple] { min-height: 100px; }
+    .deck-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.7);
+    }
+
+    @media (max-width: 640px) {
+      .app-container { padding: 16px 14px 14px; }
+      .title { font-size: 17px; }
+      .subtitle { font-size: 12px; }
+      .controls { flex-direction: column; align-items: flex-start; }
+      .btn-row { width: 100%; }
+      .btn-row button { flex: 1; justify-content: center; }
+      .controls-right { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="title-block">
+        <div class="title">Army National Guard Recruiter — Interview Questions</div>
+        <div class="subtitle">Practice answering out loud, then flip to next</div>
+      </div>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span id="badge-count">0 questions</span>
+      </div>
+    </header>
+
+    <section class="card" aria-label="Question card">
+      <div class="card-header">
+        <div class="card-title" id="question-chapter">Ready</div>
+        <div class="card-meta" id="question-meta">&nbsp;</div>
+      </div>
+      <div class="question-text" id="question-text">
+        Click <span class="question-highlight">Next Question</span> to start.
+      </div>
+      <ul class="options-list" id="options-list"></ul>
+    </section>
+
+    <section class="answer-card" aria-label="Answer card">
+      <div class="answer-header">
+        <div class="answer-label">Your turn</div>
+        <div class="answer-pill" id="answer-pill">Hidden</div>
+      </div>
+      <div class="answer-main" id="answer-main">Press “Show Answer” when you’re ready (no answer key — practice out loud).</div>
+      <div class="answer-explanation" id="answer-explanation"></div>
+    </section>
+
+    <footer class="controls">
+      <div class="btn-row">
+        <button class="primary" id="btn-next">Next Question</button>
+        <button class="secondary" id="btn-show">Show Answer</button>
+        <button class="secondary" id="btn-flag">Mark Needs Review</button>
+      </div>
+      <div class="controls-right">
+        <label class="deck-label">
+          Category (Ctrl/Cmd+click to select multiple):
+          <select id="deck-select" class="deck-select" multiple size="10">
+            <option value="all" selected>All questions</option>
+            <option value="needs-review">Needs Review</option>
+          </select>
+        </label>
+        <div class="status" id="status-text">0 / 0 questions this session.</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const questions = [
+  {
+    "chapter": "Recruiter & HR",
+    "number": 1,
+    "prompt": "Can you describe your experience working with human resources processes such as recruitment, onboarding, and employee relations?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Recruiter & HR",
+    "number": 2,
+    "prompt": "What steps do you follow when conducting a thorough background check and security clearance for potential recruits?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Recruiter & HR",
+    "number": 3,
+    "prompt": "Can you provide examples of successful conflict resolution involving personnel disputes or disciplinary actions?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Recruiter-Specific / AGR Board",
+    "number": 4,
+    "prompt": "Questions about **POSTA** and its importance.",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Recruiter-Specific / AGR Board",
+    "number": 5,
+    "prompt": "**APPLE-MDT** assessment questions.",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Recruiter-Specific / AGR Board",
+    "number": 6,
+    "prompt": "Scenario-based: *\"How would you get someone to join who wasn't interested in a bonus or college?\"*",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Recruiter-Specific / AGR Board",
+    "number": 7,
+    "prompt": "Regulations and knowledge-based questions.",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Leadership & Motivation",
+    "number": 8,
+    "prompt": "How have you previously demonstrated leadership qualities and the ability to motivate others towards a common goal?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Leadership & Motivation",
+    "number": 9,
+    "prompt": "What impact do you hope to have on the National Guard during your time as a member?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Leadership & Motivation",
+    "number": 10,
+    "prompt": "Describe a time when you had to enforce rules or regulations to maintain order and safety within a group or environment.",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Teamwork & Conflict",
+    "number": 11,
+    "prompt": "Describe a challenging situation you faced while working in a team-oriented environment, and how you contributed to resolving it.",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Teamwork & Conflict",
+    "number": 12,
+    "prompt": "How do you prioritize multiple tasks and responsibilities in high-pressure situations, especially when dealing with tight deadlines and limited resources?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Standards & Performance",
+    "number": 13,
+    "prompt": "How would you handle a situation where an applicant or fellow soldier is not meeting the physical fitness standards required for their role?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Motivation & Values",
+    "number": 14,
+    "prompt": "What inspired you to pursue a career in the National Guard?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Motivation & Values",
+    "number": 15,
+    "prompt": "What do you think sets the National Guard apart from other military organizations?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Motivation & Values",
+    "number": 16,
+    "prompt": "What do you think are the most important values that the National Guard upholds?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Motivation & Values",
+    "number": 17,
+    "prompt": "What do you think is the most important thing that the National Guard does for its members?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Motivation & Values",
+    "number": 18,
+    "prompt": "What do you think is the most important thing that the National Guard does for the country?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Motivation & Values",
+    "number": 19,
+    "prompt": "What do you think is the most important thing that the National Guard does for its communities?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Motivation & Values",
+    "number": 20,
+    "prompt": "What do you think is the most important thing that the National Guard does for the world?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Experience & Reflection",
+    "number": 21,
+    "prompt": "How has your experience in the National Guard been so far?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Experience & Reflection",
+    "number": 22,
+    "prompt": "What do you think of the training you've received in the National Guard?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Experience & Reflection",
+    "number": 23,
+    "prompt": "What do you think of the people you've met in the National Guard?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Experience & Reflection",
+    "number": 24,
+    "prompt": "What do you think of the places you've been in the National Guard?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Experience & Reflection",
+    "number": 25,
+    "prompt": "What do you think of the things you've seen in the National Guard?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Experience & Reflection",
+    "number": 26,
+    "prompt": "What do you think of the work you've done in the National Guard?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Experience & Reflection",
+    "number": 27,
+    "prompt": "What do you think of your future in the National Guard?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Experience & Reflection",
+    "number": 28,
+    "prompt": "What are your goals for your time in the National Guard?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Experience & Reflection",
+    "number": 29,
+    "prompt": "What are your plans for after your time in the National Guard?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Broader Challenges & Awareness",
+    "number": 30,
+    "prompt": "What do you think are the biggest challenges facing the National Guard today?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Broader Challenges & Awareness",
+    "number": 31,
+    "prompt": "What do you think are the biggest challenges facing the world today?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Broader Challenges & Awareness",
+    "number": 32,
+    "prompt": "What do you think are the biggest challenges facing our country today?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Technical / Role-Specific (may apply to other Guard roles)",
+    "number": 33,
+    "prompt": "Explain how you would troubleshoot and repair issues related to wheeled vehicles, including engine systems and powertrains.",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Technical / Role-Specific (may apply to other Guard roles)",
+    "number": 34,
+    "prompt": "Have you ever planned or managed large-scale food service operations, and if so, what strategies did you use to ensure efficiency and quality?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Technical / Role-Specific (may apply to other Guard roles)",
+    "number": 35,
+    "prompt": "What methods do you use to gather and analyze intelligence data from various sources, and how have you applied this information to support decision-making?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "Technical / Role-Specific (may apply to other Guard roles)",
+    "number": 36,
+    "prompt": "Describe your experience working with IT infrastructure, including hardware, software, and network components, and how you ensured system reliability and security.",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "chapter": "General / Fit",
+    "number": 37,
+    "prompt": "What are your strengths and weaknesses?",
+    "options": [],
+    "answer": "",
+    "explanation": ""
+  }
+];
+
+    const chapterEl = document.getElementById("question-chapter");
+    const metaEl = document.getElementById("question-meta");
+    const questionTextEl = document.getElementById("question-text");
+    const optionsListEl = document.getElementById("options-list");
+    const answerPillEl = document.getElementById("answer-pill");
+    const answerMainEl = document.getElementById("answer-main");
+    const answerExplanationEl = document.getElementById("answer-explanation");
+    const badgeCountEl = document.getElementById("badge-count");
+    const statusTextEl = document.getElementById("status-text");
+    const btnNext = document.getElementById("btn-next");
+    const btnShow = document.getElementById("btn-show");
+    const btnFlag = document.getElementById("btn-flag");
+    const deckSelect = document.getElementById("deck-select");
+
+    const NEEDS_REVIEW_KEY = "army-guard-recruiter-needs-review";
+
+    let currentQuestion = null;
+    let seenCount = 0;
+    let roundQuestions = [];
+    let roundIndex = 0;
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function getCardId(q) {
+      return q.chapter + "|" + q.number;
+    }
+
+    function getFlaggedIds() {
+      try {
+        const raw = localStorage.getItem(NEEDS_REVIEW_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (_) {
+        return [];
+      }
+    }
+
+    function setFlaggedIds(ids) {
+      localStorage.setItem(NEEDS_REVIEW_KEY, JSON.stringify(ids));
+    }
+
+    function getSelectedDecks() {
+      const opts = Array.from(deckSelect.selectedOptions).map((o) => o.value);
+      return opts.length ? opts : ["all"];
+    }
+
+    function getActiveQuestions() {
+      const selected = getSelectedDecks();
+      const flaggedIds = new Set(getFlaggedIds());
+
+      if (selected.includes("needs-review")) {
+        return questions.filter((q) => flaggedIds.has(getCardId(q)));
+      }
+      if (selected.includes("all")) {
+        return questions;
+      }
+      return questions.filter((q) => selected.includes(q.chapter));
+    }
+
+    function populateDeckOptions() {
+      const existingOpts = Array.from(deckSelect.querySelectorAll("option"));
+      const keepValues = new Set(["all", "needs-review"]);
+      existingOpts.forEach((opt) => {
+        if (!keepValues.has(opt.value)) opt.remove();
+      });
+
+      const chapters = [...new Set(questions.map((q) => q.chapter))].sort();
+      chapters.forEach((ch) => {
+        const opt = document.createElement("option");
+        opt.value = ch;
+        opt.textContent = ch;
+        deckSelect.appendChild(opt);
+      });
+    }
+
+    function renderQuestion(q) {
+      chapterEl.textContent = q.chapter;
+      metaEl.textContent = "Question " + q.number;
+      questionTextEl.textContent = q.prompt;
+
+      optionsListEl.innerHTML = "";
+      const li = document.createElement("li");
+      li.classList.add("memory-recall-hint");
+      li.textContent = "Prepare your answer, then tap “Show Answer” for a reminder (no answer key).";
+      optionsListEl.appendChild(li);
+    }
+
+    function hideAnswer() {
+      answerPillEl.textContent = "Hidden";
+      answerMainEl.textContent = "No answer key — practice answering out loud, then use Next Question.";
+      answerExplanationEl.textContent = "";
+    }
+
+    function showAnswer() {
+      if (currentQuestion === null) return;
+      answerPillEl.textContent = "Revealed";
+      answerMainEl.textContent = "No answer key for this question. Practice your response out loud, then go to Next Question.";
+      answerExplanationEl.textContent = "";
+    }
+
+    function handleNext() {
+      if (roundQuestions.length === 0 || roundIndex >= roundQuestions.length) {
+        const active = getActiveQuestions();
+        if (!active.length) return;
+        roundQuestions = shuffle(active.slice());
+        roundIndex = 0;
+      }
+      currentQuestion = roundQuestions[roundIndex];
+      roundIndex += 1;
+      renderQuestion(currentQuestion);
+      hideAnswer();
+      seenCount += 1;
+      updateStatus();
+      updateFlagButton();
+    }
+
+    function updateStatus() {
+      const active = getActiveQuestions();
+      badgeCountEl.textContent = active.length + " questions";
+      statusTextEl.textContent = seenCount + " / " + active.length + " questions this session.";
+    }
+
+    function updateFlagButton() {
+      if (currentQuestion === null) {
+        btnFlag.textContent = "Mark Needs Review";
+        btnFlag.classList.remove("flagged");
+        return;
+      }
+      const flagged = new Set(getFlaggedIds());
+      const isFlagged = flagged.has(getCardId(currentQuestion));
+      btnFlag.textContent = isFlagged ? "Unflag (Needs Review)" : "Mark Needs Review";
+      btnFlag.classList.toggle("flagged", isFlagged);
+    }
+
+    function toggleFlagForQuestion(q) {
+      const id = getCardId(q);
+      const ids = getFlaggedIds();
+      const set = new Set(ids);
+      if (set.has(id)) set.delete(id);
+      else set.add(id);
+      setFlaggedIds(Array.from(set));
+    }
+
+    function toggleFlag() {
+      if (currentQuestion === null) return;
+      toggleFlagForQuestion(currentQuestion);
+      updateFlagButton();
+      updateStatus();
+    }
+
+    populateDeckOptions();
+
+    btnNext.addEventListener("click", handleNext);
+    btnShow.addEventListener("click", showAnswer);
+    btnFlag.addEventListener("click", toggleFlag);
+
+    deckSelect.addEventListener("change", () => {
+      currentQuestion = null;
+      roundQuestions = [];
+      roundIndex = 0;
+      seenCount = 0;
+      chapterEl.textContent = "Ready";
+      metaEl.textContent = "\u00a0";
+      questionTextEl.innerHTML = 'Category changed. Click <span class="question-highlight">Next Question</span> to start.';
+      optionsListEl.innerHTML = "";
+      hideAnswer();
+      updateStatus();
+      updateFlagButton();
+    });
+
+    updateStatus();
+  </script>
+</body>
+</html>
